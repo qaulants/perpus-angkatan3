@@ -34,7 +34,7 @@ if (isset($_POST['edit'])) {
                         <label for="" class="form-label">Nama Level</label>
                         <input type="text" class="form-control" name="nama_level" placeholder="Masukkan nama level" value="<?php echo isset($_GET['edit']) ? $rowEdit['nama_level'] : '' ?>">
                     </div>
-
+            
                     <div class="mb-3">
                         <button name="<?php echo isset($_GET['edit']) ? 'edit' : 'tambah' ?>" class="btn text-light bg-secondary"><?php echo isset($_GET['edit']) ? 'Edit' : 'Tambah' ?></button>
                     </div>

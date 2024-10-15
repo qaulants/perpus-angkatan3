@@ -4,7 +4,8 @@ if (isset($_POST['tambah'])) {
     $penerbit = $_POST['penerbit'];
     $tahun_terbit = $_POST['tahun_terbit'];
     $pengarang = $_POST['pengarang'];
-    $insert = mysqli_query($koneksi, "INSERT INTO buku (nama_buku, penerbit, tahun_terbit, pengarang) VALUES ('$nama_buku', '$penerbit', '$tahun_terbit', '$pengarang')");
+    $id_kategori = $_POST['id_kategori'];    
+    $insert = mysqli_query($koneksi, "INSERT INTO buku (nama_buku, penerbit, tahun_terbit, pengarang,id_kategori) VALUES ('$nama_buku', '$penerbit', '$tahun_terbit', '$pengarang','$id_kategori')");
     header("location:?pg=buku&tambah=berhasil");
 }
 
@@ -24,10 +25,15 @@ if (isset($_POST['edit'])) {
     $penerbit = $_POST['penerbit'];
     $tahun_terbit = $_POST['tahun_terbit'];
     $pengarang = $_POST['pengarang'];
+    $id_kategori = $_POST['id_kategori'];  
     // ubah user : kolom apa yang mau diubah(SET), yang mau diubah id keberapa
-    $update = mysqli_query($koneksi, "UPDATE buku SET nama_buku = '$nama_buku', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', pengarang = '$pengarang' WHERE id ='$id'");
+    $update = mysqli_query($koneksi, "UPDATE buku SET nama_buku = '$nama_buku', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', pengarang = '$pengarang', id_kategori='$id_kategori'  WHERE id ='$id'");
     header("location:?pg=buku&ubah=berhasil");
 }
+
+$queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori");
+
+
 ?>
 <div class="mt-5 container">
     <div class="row">
@@ -36,6 +42,17 @@ if (isset($_POST['edit'])) {
                 <legend class="float-none w-auto px-3"><?php echo isset($_GET['edit']) ? 'Edit' : 'Tambah' ?> Buku</legend>
 
                 <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Nama Kategori</label>
+                        <select name="id_kategori" class="form-control" id="">
+                            <option value="">Pilih Kategori</option>
+                            <?php while($rowKategori = mysqli_fetch_assoc($queryKategori)): ?>
+                            <option <?php echo isset($_GET['edit'])?($rowKategori['id'] == $rowEdit['id_kategori'] ? 'selected' : ''): '' ?> value="<?php echo $rowKategori['id'] ?>">
+                                <?php echo $rowKategori['nama_kategori'] ?>
+                            </option>
+                            <?php endwhile ?>
+                        </select>
+                    </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Buku</label>
                         <input type="text" class="form-control" name="nama_buku" placeholder="Masukkan nama buku" value="<?php echo isset($_GET['edit']) ? $rowEdit['nama_buku'] : '' ?>">

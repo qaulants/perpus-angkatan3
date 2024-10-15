@@ -1,5 +1,5 @@
 <?php
-$buku = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
+    $buku = mysqli_query($koneksi, "SELECT kategori.nama_kategori, buku.* FROM buku LEFT JOIN kategori ON kategori.id = buku.id_kategori ORDER BY id DESC");
 ?>
 <div class="mt-5 container">
     <div class="row">
@@ -15,6 +15,7 @@ $buku = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
                         <thead>
                             <tr>
                                 <th scope="col">No<i class="bx bxs-sort-alt"></th>
+                                <th scope="col">Nama Kategori<i class="bx bxs-sort-alt"></th>
                                 <th scope="col">Nama Buku<i class="bx bxs-sort-alt"></th>
                                 <th scope="col">Penerbit<i class="bx bxs-sort-alt"></th>
                                 <th scope="col">Tahun Terbit<i class="bx bxs-sort-alt"></th>
@@ -29,6 +30,7 @@ $buku = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY id DESC");
                             ?>
                                 <tr>
                                     <td><?php echo $no++ ?></td>
+                                    <td><?php echo $row['nama_kategori'] ?></td>
                                     <td><?php echo $row['nama_buku'] ?></td>
                                     <td><?php echo $row['penerbit'] ?></td>
                                     <td><?php echo $row['tahun_terbit'] ?></td>
