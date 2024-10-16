@@ -1,6 +1,9 @@
 <?php
 session_start();
-include 'koneksi.php';
+if (empty($_SESSION['NAMA'])) {
+    header("location:login.php?access=failed");
+}
+ include 'koneksi.php';
 
 ?>
 <!DOCTYPE html>
@@ -39,6 +42,7 @@ include 'koneksi.php';
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
 
     <script src="bootstrap-5.3.3/dist/js/bootstrap.bundle.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
