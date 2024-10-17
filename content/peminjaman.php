@@ -39,8 +39,8 @@
                                         <a onclick="return confirm('Apakah Anda yakin akan menghapus data ini???')" href="?pg=tambah-peminjaman&delete=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
-                                        <a href="?pg=tambah-peminjaman&edit=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-edit"></i>
+                                        <a href="?pg=tambah-peminjaman&detail=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-edit"></i> Detail
                                         </a>
                                     </td>
                                 </tr>
