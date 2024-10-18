@@ -24,6 +24,7 @@
           <a class="nav-link text-light" href="?pg=buku">Buku</a>
           <a class="nav-link text-light" href="?pg=level">Level</a>
           <a class="nav-link text-light" href="?pg=peminjaman">Peminjaman</a>
+          <a class="nav-link text-light" href="?pg=pengembalian">Pengembalian</a>
         </div>
         <a href="logout.php" class="btn btn-danger btn-sm ms-auto"><i class="fa-solid fa-right-from-bracket"></i> Log out</a>
       </div>

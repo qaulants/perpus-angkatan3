@@ -5,7 +5,8 @@ if (isset($_POST['simpan'])) {
     $tgl_peminjaman = $_POST['tgl_peminjaman'];
     $tgl_pengembalian = $_POST['tgl_pengembalian'];
     $id_buku = $_POST['id_buku'];
-    $insert = mysqli_query($koneksi, "INSERT INTO peminjaman (no_peminjaman, id_anggota, tgl_peminjaman, tgl_pengembalian) VALUES ('$no_peminjaman', '$id_anggota', '$tgl_peminjaman', '$tgl_pengembalian')");
+    $status = "Di Pinjam";
+    $insert = mysqli_query($koneksi, "INSERT INTO peminjaman (no_peminjaman, id_anggota, tgl_peminjaman, tgl_pengembalian, status) VALUES ('$no_peminjaman', '$id_anggota', '$tgl_peminjaman', '$tgl_pengembalian', '$status')");
     $id_peminjaman = mysqli_insert_id($koneksi);
     
     foreach ($id_buku as $key => $buku) {
@@ -17,7 +18,7 @@ if (isset($_POST['simpan'])) {
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $delete = mysqli_query($koneksi, "DELETE FROM peminjaman WHERE id='$id'");
+    $delete = mysqli_query($koneksi, "UPDATE peminjaman SET deleted_at = 1 WHERE id='$id'");
     header("location:?pg=peminjaman&hapus=berhasil");
 }
 
@@ -53,7 +54,8 @@ $queryAnggota = mysqli_query($koneksi, "SELECT * FROM anggota");
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Tanggal Peminjaman</label>
-                                <input required type="date" class="form-control" name="tgl_peminjaman" value="<?php echo isset($_GET['detail']) ? $rowPeminjam['tgl_peminjaman'] : "" ?>"  readonly>
+                                <input required type="date" class="form-control" name="tgl_peminjaman" value="<?php echo isset($_GET['detail']) ? $rowPeminjam['tgl_peminjaman'] : "" ?>" 
+                                <?php echo isset($_GET['detail'])? 'readonly' : ''?>>
                             </div> 
                             <?php if(empty($_GET['detail'])): ?>
                                 <div class="mb-3">
@@ -87,7 +89,8 @@ $queryAnggota = mysqli_query($koneksi, "SELECT * FROM anggota");
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Tanggal Pengembalian</label>
-                                <input type="date" class="form-control" name="tgl_pengembalian" value="<?php echo isset($_GET['detail']) ? $rowPeminjam['tgl_pengembalian'] : "" ?>" required readonly>
+                                <input type="date" class="form-control" name="tgl_pengembalian" value="<?php echo isset($_GET['detail']) ? $rowPeminjam['tgl_pengembalian'] : "" ?>" required 
+                                <?php echo isset($_GET['detail'])? 'readonly' : ''?>>
                             </div>
                            
                         </div>

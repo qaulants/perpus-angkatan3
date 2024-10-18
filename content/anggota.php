@@ -34,7 +34,7 @@
                   <td><?php echo $row['email'] ?></td>
                   <td><?php echo $row['alamat'] ?></td>
                   <td>
-                    <a onclick="return confirm('Apakah Anda yakin akan menghapus data ini???')" href="?pg=tambah-user&delete=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm">
+                    <a onclick="return confirm('Apakah Anda yakin akan menghapus data ini???')" href="?pg=tambah-anggota&delete=<?php echo $row['id'] ?>" class="btn btn-danger btn-sm">
                       <i class="fas fa-trash-alt"></i>
                     </a>
                     <a href="?pg=tambah-anggota&edit=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm">

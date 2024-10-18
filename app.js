@@ -26,6 +26,14 @@ function deleteRow(button) {
 }
 
 // jquery
-// $('#add-row').click(function(){
-// })
-
+// $('#id_peminjaman').change(function() {//sama kaya $('#id_peminjaman')
+//     let no_peminjaman = $(this).find('option:selected').text();
+//     $.ajax({
+//         url:"ajax/getPeminjam.php?no_peminjaman=" + no_peminjaman,
+//         type: "get",
+//         dataType: "json",
+//         success:function(res){
+//             console.log(res);
+//         }
+//     });
+// });

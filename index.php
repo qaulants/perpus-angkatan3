@@ -40,9 +40,27 @@ if (empty($_SESSION['NAMA'])) {
 
     <?php include 'layout/footer.php'; ?>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> -->
-
+    <script src="bootstrap-5.3.3/dist/js/jquery-3.7.1.min.js"></script>
     <script src="bootstrap-5.3.3/dist/js/bootstrap.bundle.js"></script>
     <script src="app.js"></script>
+    <script>
+        $('#id_peminjaman').change(function() {//sama kaya $('#id_peminjaman')
+            let no_peminjaman = $(this).find('option:selected').val();
+            console.log(no_peminjaman)
+            $.ajax({
+                url:"ajax/getPeminjam.php?no_peminjaman=" + no_peminjaman,
+                type: "get",
+                dataType: "json",
+                success:function(res){
+                    $('#no_pinjam').val(res.data.no_peminjaman);
+                    $('#tgl_piminjaman').val(res.data.tgl_peminjaman);
+                    $('#tgl_pengembalian').val(res.data.tgl_pengembalian);
+                    $('#nama_anggota').val(res.data.nama_anggota);
+                }
+            });
+        });
+
+    </script>
 </body>
 
 </html>
